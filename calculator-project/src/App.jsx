@@ -4,7 +4,10 @@ function App() {
   return (
     <>
       <div className="calculator-container">
-        <div className="input-field">Input number</div>
+        <div className="input-field">
+          <div className="main-input">0</div>
+          <div className="result">= 0</div>
+        </div>
 
         <div className="row-one">
           <button className="num-btn">9</button>

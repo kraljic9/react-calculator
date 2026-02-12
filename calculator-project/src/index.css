@@ -14,35 +14,52 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: dodgerblue;
 }
 
 .input-field {
   grid-column: 1 / 5;
   grid-row: 1 / 2;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 10px;
+  gap: 6px;
 }
 
 .row-one {
   grid-column: 1 / 4;
   grid-row: 2 / 3;
   display: flex;
+  gap: 10px;
 }
 
 .row-two {
   grid-column: 1 / 4;
   grid-row: 3 / 4;
   display: flex;
+  gap: 10px;
 }
 
 .row-three {
   grid-column: 1 / 4;
   grid-row: 4 / 5;
   display: flex;
+  gap: 10px;
 }
 
 .row-four {
   grid-column: 1 / 4;
   grid-row: 5 / 6;
   display: flex;
+  gap: 10px;
 }
 
 .operations {
@@ -50,12 +67,15 @@ body {
   grid-row: 2 / 6;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .num-btn {
   flex: 1;
+  border-radius: 8px;
 }
 
 .operation-btn {
   flex: 1;
+  border-radius: 8px;
 }

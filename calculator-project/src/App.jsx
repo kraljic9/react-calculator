@@ -2,28 +2,34 @@ import { useRef, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [result, setResult] = useState(0);
   const [input, setInput] = useState("");
   const [operator, setOperator] = useState("");
-  const [numberA, setNumberA] = useState(0);
-  const [numberB, setNumberB] = useState(0);
-
-  console.log("input:", input);
-  console.log("Number A:", numberA);
-  console.log("Number B:", numberB);
+  const [firstNumber, setFirstNumber] = useState(0);
+  const [result, setResult] = useState(0);
 
   function addToInput(value) {
-    setInput((prev) => Number(prev + value));
+    setInput((prev) => prev + value);
   }
 
   function addOperation(value) {
     setOperator(value);
+    setFirstNumber(input);
+    setInput("");
+  }
 
-    if (operator) {
-      setNumberA((prev) => prev + input);
-      setInput("");
+  function getResult() {
+    if (operator === "+") {
+      setResult(Number(firstNumber) + Number(input));
+    } else if (operator === "-") {
+      setResult(Number(firstNumber) - Number(input));
+    } else if (operator === "*") {
+      setResult(Number(firstNumber) * Number(input));
+    } else if (operator === "/") {
+      setResult(Number(firstNumber) / Number(input));
     }
   }
+
+  console.log(firstNumber);
 
   return (
     <>
@@ -106,7 +112,9 @@ function App() {
         </div>
 
         <div className="row-four">
-          <button className="operation-btn">=</button>
+          <button className="operation-btn" onClick={getResult}>
+            =
+          </button>
           <button
             className="operation-btn"
             onClick={(e) => addToInput(e.target.value)}
@@ -127,29 +135,27 @@ function App() {
           <button
             className="operation-btn"
             value={"+"}
-            onClick={(e) => {
-              addOperation(e.target.value);
-            }}
+            onClick={(e) => addOperation(e.target.value)}
           >
             +
           </button>
           <button
             className="operation-btn"
-            value={"+"}
+            value={"-"}
             onClick={(e) => addOperation(e.target.value)}
           >
             -
           </button>
           <button
             className="operation-btn"
-            value={"+"}
+            value={"*"}
             onClick={(e) => addOperation(e.target.value)}
           >
             *
           </button>
           <button
             className="operation-btn"
-            value={"+"}
+            value={"/"}
             onClick={(e) => addOperation(e.target.value)}
           >
             /

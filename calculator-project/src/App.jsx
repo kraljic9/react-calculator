@@ -1,6 +1,19 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [result, setResult] = useState(0);
+  const [input, setInput] = useState("");
+  const [operator, setOperator] = useState("");
+  const [numberA, setNumberA] = useState(0);
+  const [numberB, setNumberB] = useState(0);
+
+  console.log("result:", result);
+  console.log("input:", input);
+  console.log("operator:", operator);
+  console.log("numberA:", numberA);
+  console.log("numberB:", numberB);
+
   return (
     <>
       <div className="calculator-container">

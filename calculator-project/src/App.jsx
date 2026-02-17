@@ -12,31 +12,88 @@ function App() {
   }
 
   function addOperation(value) {
-    setOperator(value);
-    setFirstNumber(input);
-    setInput("");
+    if (!input) return;
+
+    if (!operator) {
+      setFirstNumber(input);
+      setOperator(value);
+      setInput("");
+    } else {
+      calculate();
+      setOperator(value);
+      setInput("");
+    }
+  }
+
+  function calculate() {
+    if (operator === "+") {
+      const calculated = Number(firstNumber) + Number(input);
+      setResult(calculated);
+      setFirstNumber(calculated);
+    } else if (operator === "-") {
+      const calculated = Number(firstNumber) - Number(input);
+      setResult(calculated);
+      setFirstNumber(calculated);
+    } else if (operator === "*") {
+      const calculated = Number(firstNumber) * Number(input);
+
+      setResult(calculated);
+      setFirstNumber(calculated);
+    } else if (operator === "/") {
+      if (input === "0") {
+        setResult("Divison by zero is not allowed!");
+        return;
+      }
+      const calculated = Number(firstNumber) / Number(input);
+      setResult(calculated);
+      setFirstNumber(calculated);
+    }
   }
 
   function getResult() {
     if (operator === "+") {
-      setResult(Number(firstNumber) + Number(input));
+      const calculated = Number(firstNumber) + Number(input);
+      setResult(calculated);
     } else if (operator === "-") {
-      setResult(Number(firstNumber) - Number(input));
+      const calculated = Number(firstNumber) - Number(input);
+      setResult(calculated);
     } else if (operator === "*") {
-      setResult(Number(firstNumber) * Number(input));
+      const calculated = Number(firstNumber) * Number(input);
+
+      setResult(calculated);
     } else if (operator === "/") {
-      setResult(Number(firstNumber) / Number(input));
+      if (input === "0") {
+        setResult("Divison by zero is not allowed!");
+        return;
+      }
+      const calculated = Number(firstNumber) / Number(input);
+      setResult(calculated);
     }
+
+    setInput(result);
+    setOperator("");
+    setFirstNumber(0);
   }
 
-  console.log(firstNumber);
+  console.log(
+    "Input:",
+    input,
+    "First Number:",
+    firstNumber,
+    "Operator:",
+    operator,
+    "Result:",
+    result,
+  );
 
   return (
     <>
       <div className="calculator-container">
         <div className="input-field">
-          <div className="main-input">0</div>
-          <div className="result">= 0</div>
+          <div className="main-input">
+            {!firstNumber ? input : firstNumber + operator + input}
+          </div>
+          <div className="result">= {result}</div>
         </div>
 
         <div className="row-one">

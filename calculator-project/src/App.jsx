@@ -3,87 +3,26 @@ import "./App.css";
 
 function App() {
   const [input, setInput] = useState("");
-  const [operator, setOperator] = useState("");
-  const [firstNumber, setFirstNumber] = useState(0);
-  const [result, setResult] = useState(0);
+  const [operator, setOperator] = useState(null);
+  const [previousNumber, setPreviousNumber] = useState(null);
 
   function addToInput(value) {
     setInput((prev) => prev + value);
   }
 
-  function addOperation(value) {
-    if (!input) return;
+  function addOperation(value) {}
 
-    if (!operator) {
-      setFirstNumber(input);
-      setOperator(value);
-      setInput("");
-    } else {
-      calculate();
-      setOperator(value);
-      setInput("");
-    }
-  }
+  function calculate() {}
 
-  function calculate() {
-    if (operator === "+") {
-      const calculated = Number(firstNumber) + Number(input);
-      setResult(calculated);
-      setFirstNumber(calculated);
-    } else if (operator === "-") {
-      const calculated = Number(firstNumber) - Number(input);
-      setResult(calculated);
-      setFirstNumber(calculated);
-    } else if (operator === "*") {
-      const calculated = Number(firstNumber) * Number(input);
-
-      setResult(calculated);
-      setFirstNumber(calculated);
-    } else if (operator === "/") {
-      if (input === "0") {
-        setResult("Divison by zero is not allowed!");
-        return;
-      }
-      const calculated = Number(firstNumber) / Number(input);
-      setResult(calculated);
-      setFirstNumber(calculated);
-    }
-  }
-
-  function getResult() {
-    if (operator === "+") {
-      const calculated = Number(firstNumber) + Number(input);
-      setResult(calculated);
-    } else if (operator === "-") {
-      const calculated = Number(firstNumber) - Number(input);
-      setResult(calculated);
-    } else if (operator === "*") {
-      const calculated = Number(firstNumber) * Number(input);
-
-      setResult(calculated);
-    } else if (operator === "/") {
-      if (input === "0") {
-        setResult("Divison by zero is not allowed!");
-        return;
-      }
-      const calculated = Number(firstNumber) / Number(input);
-      setResult(calculated);
-    }
-
-    setInput(result);
-    setOperator("");
-    setFirstNumber(0);
-  }
+  function getResult() {}
 
   console.log(
     "Input:",
     input,
     "First Number:",
-    firstNumber,
+    previousNumber,
     "Operator:",
     operator,
-    "Result:",
-    result,
   );
 
   return (
@@ -91,9 +30,8 @@ function App() {
       <div className="calculator-container">
         <div className="input-field">
           <div className="main-input">
-            {!firstNumber ? input : firstNumber + operator + input}
+            {!previousNumber ? input : previousNumber + operator + input}
           </div>
-          <div className="result">= {result}</div>
         </div>
 
         <div className="row-one">
@@ -222,5 +160,4 @@ function App() {
     </>
   );
 }
-
 export default App;

@@ -37,7 +37,6 @@ function App() {
     }
   }
 
-  // When operator exists trigger a calculation
   function calculate() {
     if (!operator) return;
 
@@ -61,7 +60,18 @@ function App() {
     }
   }
 
-  function getResult() {}
+  function getResult() {
+    if (!operator) return;
+
+    calculate();
+    setInput("");
+  }
+
+  function clear() {
+    setInput("");
+    setOperator(null);
+    setPreviousNumber(null);
+  }
 
   console.log(
     "Input:",
@@ -203,6 +213,9 @@ function App() {
             /
           </button>
         </div>
+        <button onClick={clear} className="clear">
+          Clear
+        </button>
       </div>
     </>
   );

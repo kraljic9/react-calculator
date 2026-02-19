@@ -10,7 +10,32 @@ function App() {
     setInput((prev) => prev + value);
   }
 
-  function addOperation(value) {}
+  function addOperation(value) {
+    if (value === "+") {
+      setOperator("+");
+      setPreviousNumber(input);
+      setInput("");
+      calculate();
+    }
+    if (value === "-") {
+      setOperator("-");
+      setPreviousNumber(input);
+      setInput("");
+      calculate();
+    }
+    if (value === "*") {
+      setOperator("*");
+      setPreviousNumber(input);
+      setInput("");
+      calculate();
+    }
+    if (value === "/") {
+      setOperator("/");
+      setPreviousNumber(input);
+      setInput("");
+      calculate();
+    }
+  }
 
   // When operator exists trigger a calculation
   function calculate() {
@@ -30,7 +55,8 @@ function App() {
       setPreviousNumber(calculated);
     }
     if (operator === "/") {
-      let calculated = Number(previousNumber) + Number(input);
+      if (input === "0") setPreviousNumber("Error cannot devied with 0");
+      let calculated = Number(previousNumber) / Number(input);
       setPreviousNumber(calculated);
     }
   }

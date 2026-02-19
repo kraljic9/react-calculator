@@ -11,71 +11,58 @@ function App() {
   }
 
   function addOperation(value) {
-    if (value === "+") {
-      setOperator("+");
-      setPreviousNumber(input);
-      setInput("");
-      calculate();
-    }
-    if (value === "-") {
-      setOperator("-");
-      setPreviousNumber(input);
-      setInput("");
-      calculate();
-    }
-    if (value === "*") {
-      setOperator("*");
-      setPreviousNumber(input);
-      setInput("");
-      calculate();
-    }
-    if (value === "/") {
-      setOperator("/");
-      setPreviousNumber(input);
-      setInput("");
-      calculate();
-    }
-  }
+    if (!input) return;
 
-  function calculate() {
-    if (!operator) return;
+    if (previousNumber === null) {
+      setPreviousNumber(Number(input));
+    } else {
+      const calculated = preformeCalculation(
+        previousNumber,
+        Number(input),
+        operator,
+      );
 
-    if (operator === "+") {
-      let calculated = Number(previousNumber) + Number(input);
       setPreviousNumber(calculated);
     }
 
-    if (operator === "-") {
-      let calculated = Number(previousNumber) - Number(input);
-      setPreviousNumber(calculated);
-    }
-    if (operator === "*") {
-      let calculated = Number(previousNumber) * Number(input);
-      setPreviousNumber(calculated);
-    }
-    if (operator === "/") {
-      if (input === "0") {
-        setPreviousNumber("Error cannot devied with 0");
-        setInput("");
-        setOperator("");
-        return;
-      }
-      let calculated = Number(previousNumber) / Number(input);
-      setPreviousNumber(calculated);
-    }
+    setOperator(value);
+    setInput("");
   }
 
   function getResult() {
-    if (!operator) return;
+    if (!operator || input === "") return;
 
-    calculate();
-    setInput("");
+    const calculated = preformeCalculation(
+      previousNumber,
+      Number(input),
+      operator,
+    );
+
+    setInput(String(calculated));
+    setPreviousNumber(null);
+    setOperator(null);
   }
 
   function clear() {
     setInput("");
     setOperator(null);
     setPreviousNumber(null);
+  }
+
+  function preformeCalculation(a, b, operator) {
+    switch (operator) {
+      case "+":
+        return a + b;
+      case "-":
+        return a - b;
+      case "*":
+        return a * b;
+      case "/":
+        if (b === 0) return "Error";
+        return a / b;
+      default:
+        return b;
+    }
   }
 
   console.log(

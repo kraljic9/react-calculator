@@ -54,7 +54,12 @@ function App() {
       setPreviousNumber(calculated);
     }
     if (operator === "/") {
-      if (input === "0") setPreviousNumber("Error cannot devied with 0");
+      if (input === "0") {
+        setPreviousNumber("Error cannot devied with 0");
+        setInput("");
+        setOperator("");
+        return;
+      }
       let calculated = Number(previousNumber) / Number(input);
       setPreviousNumber(calculated);
     }

@@ -12,7 +12,28 @@ function App() {
 
   function addOperation(value) {}
 
-  function calculate() {}
+  // When operator exists trigger a calculation
+  function calculate() {
+    if (!operator) return;
+
+    if (operator === "+") {
+      let calculated = Number(previousNumber) + Number(input);
+      setPreviousNumber(calculated);
+    }
+
+    if (operator === "-") {
+      let calculated = Number(previousNumber) - Number(input);
+      setPreviousNumber(calculated);
+    }
+    if (operator === "*") {
+      let calculated = Number(previousNumber) * Number(input);
+      setPreviousNumber(calculated);
+    }
+    if (operator === "/") {
+      let calculated = Number(previousNumber) + Number(input);
+      setPreviousNumber(calculated);
+    }
+  }
 
   function getResult() {}
 
